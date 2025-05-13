@@ -17,14 +17,15 @@ app.get('/',(req, res) => {
     res.send('Hello form Express Get API');
 });
 
-
-mongoose.connect('mongodb+srv://gohar2016623:2groGpyD2HbqfFdL@cluster0.oqlebou.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
+const dbUri = 'mongodb+srv://gohar2016623:2groGpyD2HbqfFdL@cluster0.oqlebou.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0';
+mongoose.connect(dbUri)
 .then(() => {
     console.log('Connected to database!');
     app.listen(3000, () =>{
         console.log('App is runnning on port 3000');
     });
 })
-.catch(() => {
+.catch((err) => {
     console.log("Couldn't connect to database");
+    console.error(err);
 });
